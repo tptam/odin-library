@@ -152,11 +152,18 @@ header h1 {
 
 .card .author {
     font-size: var(--card-author-size);
-    /* text-align: right; */
 }
 
 .card .page {
     text-align: center;
+}
+
+.card .del {
+    width: 1.5rem;
+    position: absolute;
+    top: calc(var(--gutter)/2);
+    left: calc(var(--gutter)/2);
+    cursor: pointer;
 }
 
 .card .read {
