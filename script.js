@@ -20,7 +20,7 @@ Book.prototype.getCard = function() {
     const title = document.createElement("h1");
     const author = document.createElement("p");
     const page = document.createElement("p");
-    const read = document.createElement("div");
+    const read = document.createElement("img");
     card.classList.add("card");
     body.classList.add("card-body");
     header.classList.add("card-header");
@@ -29,6 +29,8 @@ Book.prototype.getCard = function() {
     author.classList.add("author");
     page.classList.add("page");
     read.classList.add("read", (this.read ? "true" : "false"));
+    read.setAttribute("src", "./images/bookmark.svg");
+    read.setAttribute("alt", this.read ? "Already read" : "Not yet");
     title.textContent = this.title;
     author.textContent = this.author;
     page.textContent = this.page.toString();
@@ -74,9 +76,17 @@ const book3 = new Book(
     false
 )
 
+const book4 = new Book(
+    "Only Forward",
+    "Michael Marshall Smith",
+    322,
+    false
+)
+
 myLibrary.push(book1);
 myLibrary.push(book2);
 myLibrary.push(book3);
+myLibrary.push(book4);
 
 const body = document.querySelector(".main");
 
