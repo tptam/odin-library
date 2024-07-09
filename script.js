@@ -78,6 +78,6 @@ myLibrary.push(book1);
 myLibrary.push(book2);
 myLibrary.push(book3);
 
-const body = document.querySelector("body");
+const body = document.querySelector(".main");
 
 displayLibrary(body);
