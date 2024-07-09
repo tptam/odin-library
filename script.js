@@ -1,4 +1,6 @@
 const myLibrary = [];
+const PARENT = document.querySelector(".main");
+const ADD_BUTTON = document.querySelector("form button");
 
 function Book(title, author, page, read) {
     this.title = title;
@@ -45,15 +47,33 @@ Book.prototype.getCard = function() {
     return card;
 }
 
-function displayLibrary(parent) {
+function displayLibrary() {
     for (let book of myLibrary) {
         const card = book.getCard();
-        parent.appendChild(card);
+        PARENT.appendChild(card);
     }
 }
 
 function addBookToLibrary() {
+    const title = document.querySelector("#title").value;
+    const author = document.querySelector("#author").value;
+    const page = parseInt(document.querySelector("#page").value);
+    const read = document.querySelector("#read-true").checked;
+    if (title === "" || author === "" || page <= 0) {
+        return;
+    }
+    const sameBook = myLibrary.filter(
+        (book) => book.title === title && book.author === author && book.page === page
+    )
+    if (sameBook.length > 0) {
+        return;
+    }
+    const newBook = new Book(title, author, page, read);
+    PARENT.appendChild(newBook.getCard());
 }
+
+
+
 
 
 
@@ -88,6 +108,5 @@ myLibrary.push(book2);
 myLibrary.push(book3);
 myLibrary.push(book4);
 
-const body = document.querySelector(".main");
+displayLibrary();
 
-displayLibrary(body);
