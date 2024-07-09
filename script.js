@@ -43,18 +43,41 @@ Book.prototype.getCard = function() {
     return card;
 }
 
+function displayLibrary(parent) {
+    for (let book of myLibrary) {
+        const card = book.getCard();
+        parent.appendChild(card);
+    }
+}
+
 function addBookToLibrary() {
 }
 
 
 
-// const myFavorite = new Book(
-//     "10,000 Light-Years From Home",
-//     "James Tiptree Jr.",
-//     362,
-//     true
-// )
+const book1 = new Book(
+    "10,000 Light-Years From Home",
+    "James Tiptree Jr.",
+    362,
+    true
+);
+const book2 = new Book(
+    "New York City Trees",
+    "City of New York Park & Recreation",
+    240,
+    true
+);
+const book3 = new Book(
+    "Selected Poems",
+    "William Carlos Williams",
+    323,
+    false
+)
 
-// const body = document.querySelector("body");
-// const card = myFavorite.getCard();
-// body.appendChild(card);
+myLibrary.push(book1);
+myLibrary.push(book2);
+myLibrary.push(book3);
+
+const body = document.querySelector("body");
+
+displayLibrary(body);
