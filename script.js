@@ -60,19 +60,27 @@ function addBookToLibrary() {
     const page = parseInt(document.querySelector("#page").value);
     const read = document.querySelector("#read-true").checked;
     if (title === "" || author === "" || page <= 0) {
+        alert("Invalid data");
         return;
     }
     const sameBook = myLibrary.filter(
         (book) => book.title === title && book.author === author && book.page === page
     )
     if (sameBook.length > 0) {
+        alert("The book already exists in the library.");
         return;
     }
     const newBook = new Book(title, author, page, read);
+    myLibrary.push(newBook);
     PARENT.appendChild(newBook.getCard());
 }
 
-
+ADD_BUTTON.addEventListener(
+    "click", (e) => {
+        addBookToLibrary();
+        e.preventDefault();
+    }
+);
 
 
 
