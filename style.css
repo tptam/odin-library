@@ -105,8 +105,9 @@ header #form-open-close {
     font-size: var(--form-text-size);
     padding: calc(var(--gutter) / 4) calc(var(--gutter) / 2);
     border-style: none;
-    border-radius: calc(var(--form-text-size) / 4);
-    background-color: var(--background-color);
+    /* border-radius: calc(var(--form-text-size) / 4); */
+    /* background-color: var(--background-color); */
+    border-bottom: 1px solid var(--primary-color);
 }
 
 .form #title {
@@ -150,6 +151,7 @@ header #form-open-close {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(var(--card-width), 1fr));
     gap: var(--gutter);
+    padding-top: calc(var(--gutter) * 3);
 }
 
 
