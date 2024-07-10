@@ -94,18 +94,20 @@ addButton.addEventListener(
     }
 );
 
-const openCloseButton = document.querySelector("#form-open-close");
+const openCloseButton = document.querySelector("#toggle-form");
 openCloseButton.addEventListener(
     "click", (e) => {
+        const body = document.querySelector("body");
         const form = document.querySelector(".form");
-        if (e.target.classList.contains("form-open")) {
+        if (e.target.classList.contains("open-form")) {
             form.hidden = false;
             e.target.textContent = "End Registration"
         } else {
             form.hidden = true;
             e.target.textContent = "Register New Book"
         }
-        e.target.classList.toggle("form-open");
+        body.classList.toggle("form-opened");
+        e.target.classList.toggle("open-form");
         e.preventDefault();
     }
 )
