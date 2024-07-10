@@ -32,41 +32,28 @@ Book.prototype.toggleRead = function() {
 }
 
 Book.prototype.getCard = function() {
-    const card = document.createElement("div");
-    const body = document.createElement("div");
-    const header = document.createElement("div");
-    const footer = document.createElement("div");
-    const title = document.createElement("h1");
-    const author = document.createElement("p");
-    const page = document.createElement("p");
-    const read = document.createElement("img");
-    const del = document.createElement("img");
- 
-    card.classList.add("card");
-    card.setAttribute("data-id", this.id); 
-    body.classList.add("card-body");
-    header.classList.add("card-header");
-    footer.classList.add("card-footer");
-    title.classList.add("title");
-    author.classList.add("author");
-    page.classList.add("page");
-    read.classList.add("read");
-    read.setAttribute("src", (this.read ? "./images/medal.svg" : "./images/ribbon.svg"));
-    read.setAttribute("alt", this.read ? "Already read" : "Not read yet");
-    del.classList.add("del");
-    del.setAttribute("src", "./images/close.svg");
-    del.setAttribute("alt", "Delete icon");
-    title.textContent = this.title;
-    author.textContent = this.author;
-    page.textContent = `- ${this.page.toString()} -`;
-    card.appendChild(del);
-    card.appendChild(read);
-    card.appendChild(body);
-    card.appendChild(footer);
-    body.appendChild(title);
-    body.appendChild(author);
-    footer.appendChild(page);
-    return card;
+    const readIcon = this.read ? "./images/medal.svg" : "./images/ribbon.svg";
+    const readAlt = this.read ? "Already read" : "Not read yet";
+   
+    const cardHTML = `
+        <div class="card" data-id="${this.id}">
+            <div class="card-header">
+                <img class="del" src="./images/close.svg" alt="Delete icon">
+                <img class="read" src="${readIcon}" alt="${readAlt}">
+            </div>
+            <div class="card-body">
+                <h1 class="title">${this.title}</h1>
+                <p class="author">${this.author}</p>
+            </div>
+            <div class="card-footer">
+                <p class="page">- ${this.page} -</p>
+            </div>
+        </div>
+    `;
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(cardHTML, 'text/html');
+    return doc.body.firstElementChild;
 }
 
 
@@ -158,7 +145,7 @@ elements.main.addEventListener(
     // for better performance with a lot of cards.
     "click", (e) => {
         if (e.target.classList.contains("del")) {
-            const card = e.target.parentNode;
+            const card = e.target.parentNode.parentNode;
 
             // Remove from myLibrary
             const id = parseInt(card.getAttribute("data-id"));
@@ -169,7 +156,7 @@ elements.main.addEventListener(
             return;
         }
         if (e.target.classList.contains("read")) {
-            const card = e.target.parentNode;
+            const card = e.target.parentNode.parentNode;
 
             // Update myLibrary
             const id = parseInt(card.getAttribute("data-id"));
