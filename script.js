@@ -6,6 +6,7 @@ function Book(title, author, page, read) {
     this.author = author;
     this.page = page;
     this.read = read;
+    this.id = myLibrary.length === 0 ? 0 : myLibrary.at(-1).id + 1;
     this.info = () => {
         let result = `${this.title} by ${thi.author}, ${this.page} pages, `;
         result += this.read ? "already read" : "not read yet"
@@ -24,6 +25,7 @@ Book.prototype.getCard = function() {
     const read = document.createElement("img");
     const del = document.createElement("img");
     card.classList.add("card");
+    card.setAttribute("data-id", this.id);
     body.classList.add("card-body");
     header.classList.add("card-header");
     footer.classList.add("card-footer");
