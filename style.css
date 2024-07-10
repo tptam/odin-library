@@ -113,6 +113,7 @@ button.delete-button:active {
 
 
 .drawer {
+    background-color: var(--surface-color);
     font-size: var(--form-text-size);
     font-weight: bold;
 }
