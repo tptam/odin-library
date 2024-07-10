@@ -61,7 +61,7 @@ footer {
 
 header {
     display: grid;
-    grid-template-columns: 1fr 15rem;
+    grid-template-columns: 1fr 20rem;
     align-items: center;
     gap: var(--gutter);
     padding-right: calc(var(--gutter) * 3);
@@ -81,6 +81,15 @@ form button:active {
     grid-template-columns: auto 1fr;
     align-items: center;
     gap: calc(var(--gutter) / 2);
+
+    color: var(--light-text-color);
+    background-color: var(--primary-color);
+    font-size: var(--form-text-size);
+    font-weight: bold;
+    padding: calc(var(--gutter) / 4) calc(var(--gutter) * 2);
+    border-style: none;
+    border-radius: calc(var(--form-text-size) / 2);
+    border: 3px solid var(--light-text-color);
 }
 
 #drawer-trigger * {
