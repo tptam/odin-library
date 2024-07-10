@@ -139,11 +139,13 @@ elements.drawerTrigger.addEventListener(
             elements.drawer.hidden = false;
             elements.drawerTriggerSpan.textContent = "End Registration";
             elements.drawerTriggerImg.setAttribute("src", "./images/up.svg");
+            elements.drawerTriggerImg.setAttribute("alt", "Up icon");
             elements.formTitle.focus();
         } else {
             elements.drawer.hidden = true;
             elements.drawerTriggerSpan.textContent = "Register New Book"
             elements.drawerTriggerImg.setAttribute("src", "./images/down.svg");
+            elements.drawerTriggerImg.setAttribute("alt", "Down icon");
         }
         elements.body.classList.toggle("drawer-opened");
         elements.drawerTrigger.classList.toggle("open-drawer");
