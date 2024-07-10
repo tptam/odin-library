@@ -99,15 +99,19 @@ openCloseButton.addEventListener(
     "click", (e) => {
         const body = document.querySelector("body");
         const form = document.querySelector(".form");
-        if (e.target.classList.contains("open-form")) {
+        const span = openCloseButton.querySelector("span");
+        const img = openCloseButton.querySelector("img");
+        if (openCloseButton.classList.contains("open-form")) {
             form.hidden = false;
-            e.target.textContent = "End Registration"
+            span.textContent = "End Registration";
+            img.setAttribute("src", "./images/up.svg");
         } else {
             form.hidden = true;
-            e.target.textContent = "Register New Book"
+            span.textContent = "Register New Book"
+            img.setAttribute("src", "./images/down.svg");
         }
         body.classList.toggle("form-opened");
-        e.target.classList.toggle("open-form");
+        openCloseButton.classList.toggle("open-form");
         e.preventDefault();
     }
 )

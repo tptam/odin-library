@@ -65,8 +65,9 @@ footer {
 
 header {
     display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: baseline;
+    grid-template-columns: 1fr 15rem;
+    align-items: center;
+    gap: var(--gutter);
     padding-right: calc(var(--gutter) * 3);
 }
 
@@ -74,12 +75,24 @@ header h1 {
     color: var(--light-text-color);
 }
 
-header #toggle-form {
+#toggle-form {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: calc(var(--gutter) / 2);
+}
+
+#toggle-form * {
     color: var(--light-text-color);
     font-size: var(--form-text-size);
     font-weight: bold;
     cursor: pointer;
 }
+
+#toggle-form img {
+    width: calc(var(--form-text-size) * 2);
+}
+
 
 
 .form {
@@ -146,6 +159,7 @@ header #toggle-form {
     grid-template-columns: repeat(auto-fill, minmax(var(--card-width), 1fr));
     gap: var(--gutter);
     padding-top: calc(var(--gutter) * 3);
+    padding-bottom: calc(var(--gutter) * 3);
 }
 
 
