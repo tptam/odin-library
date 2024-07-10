@@ -7,11 +7,10 @@ function Book(title, author, page, read) {
     this.page = page;
     this.read = read;
     this.id = myLibrary.length === 0 ? 0 : myLibrary.at(-1).id + 1;
-    this.info = () => {
-        let result = `${this.title} by ${thi.author}, ${this.page} pages, `;
-        result += this.read ? "already read" : "not read yet"
-        return result;
-    }
+}
+
+Book.prototype.toggleRead = function() {
+    this.read = !(this.read);
 }
 
 Book.prototype.getCard = function() {
@@ -84,8 +83,15 @@ function addBookToLibrary() {
     PARENT.appendChild(newBook.getCard());
 }
 
+function getBookByID(id){
+    return myLibrary.find((book) => book.id === id);
+}
 
-// Initial
+function deleteBookByID(id){
+    myLibrary.splice(id, 1);
+}
+
+
 const addButton = document.querySelector("form button");
 addButton.addEventListener(
     "click", (e) => {
@@ -123,16 +129,27 @@ main.addEventListener(
             const card = e.target.parentNode;
 
             // Remove from myLibrary
-            const book_id = card.getAttribute("data-id");
-            const bookIndex = myLibrary.findIndex((book) => book.id === book_id);
-            myLibrary.splice(bookIndex, 1);
+            const id = parseInt(card.getAttribute("data-id"));
+            deleteBookByID(id);
 
             // Remove from DOM
             card.remove();
+            return;
+        }
+        if (e.target.classList.contains("read")) {
+            const card = e.target.parentNode;
+
+            // Update myLibrary
+            const id = parseInt(card.getAttribute("data-id"));
+            const book = getBookByID(id);
+            book.toggleRead();
+
+            // Update DOM
+            e.target.classList.toggle("true");
+            e.target.classList.toggle("false");
         }
     }
 )
-
 
 // Dummy data
 
