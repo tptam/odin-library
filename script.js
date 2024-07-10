@@ -92,11 +92,18 @@ addButton.addEventListener(
     }
 );
 
-const openCloseButton = document.querySelector("#open-close");
+const openCloseButton = document.querySelector("#form-open-close");
 openCloseButton.addEventListener(
     "click", (e) => {
         const form = document.querySelector(".form");
-        form.hidden = false;
+        if (e.target.classList.contains("form-open")) {
+            form.hidden = false;
+            e.target.textContent = "End Registration"
+        } else {
+            form.hidden = true;
+            e.target.textContent = "Register New Book"
+        }
+        e.target.classList.toggle("form-open");
         e.preventDefault();
     }
 )

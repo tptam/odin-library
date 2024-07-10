@@ -70,7 +70,7 @@ header h1 {
     color: var(--light-text-color);
 }
 
-header .form-open {
+header #form-open-close {
     color: var(--light-text-color);
     font-size: var(--form-text-size);
     font-weight: bold;
