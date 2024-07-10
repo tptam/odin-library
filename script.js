@@ -4,7 +4,7 @@ const myLibrary = [];
 const elements = {
     body: document.querySelector("body"),
     main: document.querySelector(".main"),
-    form: document.querySelector(".form"),
+    drawer: document.querySelector(".drawer"),
     
     formTitle: document.querySelector("#title"),
     formAuthor: document.querySelector("#author"),
@@ -12,9 +12,9 @@ const elements = {
     formRead: document.querySelector("#read-true"),
     formButton: document.querySelector("form button"),
 
-    drawerTrigger: document.querySelector("#toggle-form"),
-    drawerTriggerImg: document.querySelector("#toggle-form img"),
-    drawerTriggerSpan: document.querySelector("#toggle-form span"),
+    drawerTrigger: document.querySelector("#drawer-trigger"),
+    drawerTriggerImg: document.querySelector("#drawer-trigger img"),
+    drawerTriggerSpan: document.querySelector("#drawer-trigger span"),
 }
 
 // Constructor + prototype methods
@@ -51,7 +51,6 @@ Book.prototype.getCard = function() {
     author.classList.add("author");
     page.classList.add("page");
     read.classList.add("read");
-    read.setAttribute("data-read", this.read.toString());
     read.setAttribute("src", (this.read ? "./images/medal.svg" : "./images/ribbon.svg"));
     read.setAttribute("alt", this.read ? "Already read" : "Not read yet");
     del.classList.add("del");
@@ -114,9 +113,6 @@ function deleteBookByID(id){
 }
 
 function updateReadDom(readElement, read){
-    read = !readElement.getAttribute("data-read");
-    readElement.setAttribute("data-read", read);
-
     readElement.setAttribute(
         "src",
         read ? "./images/medal.svg" : "./images/ribbon.svg"
@@ -139,18 +135,18 @@ elements.formButton.addEventListener(
 
 elements.drawerTrigger.addEventListener(
     "click", (e) => {
-        if (elements.drawerTrigger.classList.contains("open-form")) {
-            elements.form.hidden = false;
+        if (elements.drawerTrigger.classList.contains("open-drawer")) {
+            elements.drawer.hidden = false;
             elements.drawerTriggerSpan.textContent = "End Registration";
             elements.drawerTriggerImg.setAttribute("src", "./images/up.svg");
             elements.formTitle.focus();
         } else {
-            elements.form.hidden = true;
+            elements.drawer.hidden = true;
             elements.drawerTriggerSpan.textContent = "Register New Book"
             elements.drawerTriggerImg.setAttribute("src", "./images/down.svg");
         }
-        elements.body.classList.toggle("form-opened");
-        elements.drawerTrigger.classList.toggle("open-form");
+        elements.body.classList.toggle("drawer-opened");
+        elements.drawerTrigger.classList.toggle("open-drawer");
         e.preventDefault();
     }
 )

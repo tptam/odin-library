@@ -43,12 +43,12 @@ body {
     min-height: 100vh;
 }
 
-body.form-opened {
+body.drawer-opened {
     grid-template-rows: auto auto 1fr auto;
 }
 
 header,
-.form,
+.drawer,
 .main,
 footer {
     padding: var(--gutter);
@@ -71,37 +71,37 @@ header h1 {
     color: var(--light-text-color);
 }
 
-#toggle-form:active,
+#drawer-trigger:active,
 form button:active {
     transform: scale(0.95);
 }
 
-#toggle-form {
+#drawer-trigger {
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
     gap: calc(var(--gutter) / 2);
 }
 
-#toggle-form * {
+#drawer-trigger * {
     color: var(--light-text-color);
     font-size: var(--form-text-size);
     font-weight: bold;
     cursor: pointer;
 }
 
-#toggle-form img {
+#drawer-trigger img {
     width: calc(var(--form-text-size) * 2);
 }
 
 
 
-.form {
+.drawer {
     font-size: var(--form-text-size);
     font-weight: bold;
 }
 
-.form form {
+.drawer form {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -109,7 +109,7 @@ form button:active {
     gap: var(--gutter);
 }
 
-.form input {
+.drawer input {
     font-size: var(--form-text-size);
     padding: calc(var(--gutter) / 4) calc(var(--gutter) / 2);
     border-style: none;
@@ -118,33 +118,33 @@ form button:active {
     border-bottom: 1px solid var(--primary-color);
 }
 
-.form #title {
+.drawer #title {
     width: 35ch;
 }
 
-.form #author {
+.drawer #author {
     width: 35ch;
 }
 
-.form #page {
+.drawer #page {
     width: 8ch;
 }
 
-.form fieldset {
+.drawer fieldset {
     border: none;
     min-width: 0;
     display: flex;
     gap: calc(var(--gutter) / 2);
 }
 
-.form input[type=radio] {
+.drawer input[type=radio] {
     accent-color: var(--primary-color);
     border: 0px;
     width: var(--form-text-size);
     height: var(--form-text-size);
 }
 
-.form button {
+.drawer button {
     color: var(--light-text-color);
     background-color: var(--primary-color);
     font-size: var(--form-text-size);
