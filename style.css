@@ -18,10 +18,6 @@
     --surface-color: #fff;
     --shadow-color: gray;
 
-    /* #bbb */
-    --inactive-color-filter: invert(72%) sepia(15%) saturate(8%) hue-rotate(314deg) brightness(96%) contrast(109%);
-    /* #599347 */
-    --valid-color-filiter: invert(49%) sepia(31%) saturate(718%) hue-rotate(61deg) brightness(97%) contrast(84%);
 }
 
 * {
@@ -207,14 +203,7 @@ header h1 {
     top: 0;
     right: 0.5rem;
     cursor: pointer;
-}
-
-.card .read.true {
-    filter: var(--valid-color-filiter);
-}
-
-.card .read.false {
-    filter: var(--inactive-color-filter);
+    opacity: 0.8;
 }
 
 footer {

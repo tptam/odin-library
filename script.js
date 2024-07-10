@@ -23,15 +23,17 @@ Book.prototype.getCard = function() {
     const page = document.createElement("p");
     const read = document.createElement("img");
     const del = document.createElement("img");
+ 
     card.classList.add("card");
-    card.setAttribute("data-id", this.id);
+    card.setAttribute("data-id", this.id); 
     body.classList.add("card-body");
     header.classList.add("card-header");
     footer.classList.add("card-footer");
     title.classList.add("title");
     author.classList.add("author");
     page.classList.add("page");
-    read.classList.add("read", (this.read ? "true" : "false"));
+    read.classList.add("read");
+    read.setAttribute("data-read", this.read.toString());
     read.setAttribute("src", (this.read ? "./images/medal.svg" : "./images/ribbon.svg"));
     read.setAttribute("alt", this.read ? "Already read" : "Not read yet");
     del.classList.add("del");
@@ -40,7 +42,6 @@ Book.prototype.getCard = function() {
     title.textContent = this.title;
     author.textContent = this.author;
     page.textContent = `- ${this.page.toString()} -`;
-    read.textContent = this.read;
     card.appendChild(del);
     card.appendChild(read);
     card.appendChild(body);
