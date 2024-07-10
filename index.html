@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-    <title>Library</title>
+    <title>My Library</title>
 </head>
 <body>
     <header>
@@ -18,13 +18,14 @@
     <div class="form" hidden>
         <form>
             <label for="title">Title
-                <input type="text" name="title" id="title">
+                <input type="text" name="title" id="title" required>
             </label>
             <label for="author">Author
-                <input type="text" name="author" id="author">
+                <input type="text" name="author" id="author" required>
             </label>
             <label for="page">Page
-                <input type="number" name="page" id="page" inputmode="numeric">
+                <input type="number" name="page" id="page" 
+                    inputmode="numeric" min="1" required >
             </label>
             <fieldset>
                 <label for="read-true">Already read

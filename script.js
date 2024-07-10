@@ -66,8 +66,8 @@ function addBookToLibrary() {
     const read = document.querySelector("#read-true").checked;
 
     // Data validation
-    if (title === "" || author === "" || page <= 0) {
-        alert("Invalid data");
+    if (title === "" || author === "" || page === "" || page <= 0) {
+        alert("Input title, author, and the number of the pages (> 0).");
         return;
     }
     const sameBook = myLibrary.filter(
@@ -114,24 +114,28 @@ addButton.addEventListener(
     }
 );
 
-const openCloseButton = document.querySelector("#toggle-form");
-openCloseButton.addEventListener(
+const toggleFormButton = document.querySelector("#toggle-form");
+toggleFormButton.addEventListener(
     "click", (e) => {
         const body = document.querySelector("body");
         const form = document.querySelector(".form");
-        const span = openCloseButton.querySelector("span");
-        const img = openCloseButton.querySelector("img");
-        if (openCloseButton.classList.contains("open-form")) {
+        const span = document.querySelector("#toggle-form span");
+        const img = document.querySelector("#toggle-form img");
+        const firstField = document.querySelector("#title");
+
+        if (toggleFormButton.classList.contains("open-form")) {
             form.hidden = false;
             span.textContent = "End Registration";
             img.setAttribute("src", "./images/up.svg");
+            
+            firstField.focus();
         } else {
             form.hidden = true;
             span.textContent = "Register New Book"
             img.setAttribute("src", "./images/down.svg");
         }
         body.classList.toggle("form-opened");
-        openCloseButton.classList.toggle("open-form");
+        toggleFormButton.classList.toggle("open-form");
         e.preventDefault();
     }
 )
