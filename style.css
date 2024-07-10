@@ -59,9 +59,34 @@ footer {
     background-color: var(--primary-color);
 }
 
+header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding-right: calc(var(--gutter) * 3);
+}
+
 header h1 {
     color: var(--light-text-color);
 }
+
+header .form-open {
+    color: var(--light-text-color);
+    font-size: var(--form-text-size);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* header button {
+    color: var(--secondary-color);
+    background-color: var(--surface-color);
+    font-size: var(--form-text-size);
+    font-weight: bold;
+    padding: calc(var(--gutter) / 4) calc(var(--gutter) * 2);
+    border-style: none;
+    border-radius: calc(var(--form-text-size) / 2);
+} */
+
 
 .form {
     font-size: var(--form-text-size);

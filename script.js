@@ -160,7 +160,6 @@ const books = [
     { title: "The Hologram's Lament", author: "Mirage Lightweaver", page: 287 }
 ];
 for (let book of books) {
-    console.log(book);
     const newBook = new Book(book.title, book.author, book.page, Math.random()< 0.5);
     myLibrary.push(newBook);
 }
