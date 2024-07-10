@@ -1,6 +1,7 @@
-// Constants
+// Global constants
 
 const myLibrary = [];
+
 const elements = {
     body: document.querySelector("body"),
     main: document.querySelector(".main"),
@@ -16,6 +17,7 @@ const elements = {
     drawerTriggerImg: document.querySelector("#drawer-trigger img"),
     drawerTriggerSpan: document.querySelector("#drawer-trigger span"),
 }
+
 
 // Constructor + prototype methods
 
@@ -55,6 +57,7 @@ Book.prototype.getCard = function() {
         </div>
     `;
 
+    // Avoid innerHTML for security, use DOMParser instead.
     const parser = new DOMParser();
     const doc = parser.parseFromString(cardHTML, 'text/html');
     return doc.body.firstElementChild;
@@ -77,15 +80,9 @@ function addBookToLibrary() {
     const read = elements.formRead.checked;
 
     // Data validation
-    if (title === "" || author === "" || page === "" || page <= 0) {
-        alert("Input title, author, and the number of the pages (> 0).");
-        return;
-    }
-    const sameBook = myLibrary.filter(
-        book => book.title === title && book.author === author && book.page === page
-    )
-    if (sameBook.length > 0) {
-        alert("The book already exists in the library.");
+    const errorMessage = getValidationMessage(title, author, page, read);
+    if (errorMessage) {
+        alert(errorMessage);
         return;
     }
 
@@ -93,6 +90,25 @@ function addBookToLibrary() {
     myLibrary.push(newBook);
     
     elements.main.appendChild(newBook.getCard());
+}
+
+function getValidationMessage(title, author, page, read){
+    if (title === "" || author === "" || page === "") {
+        return "Input title, author, and page.";
+    }
+    if (!title || !author || !page || !read) {
+        return "Invalid data was sent.";
+    }
+    if (page <= 0) {
+        return "Page should be a positive number.";
+    }
+    const sameBook = myLibrary.filter(
+        book => book.title === title && book.author === author && book.page === page
+    )
+    if (sameBook.length > 0) {
+        return "The book already exists in the library.";
+    }
+    return ""
 }
 
 function getBookByID(id){
@@ -145,33 +161,30 @@ elements.drawerTrigger.addEventListener(
 )
 
 elements.main.addEventListener(
-    // Card-related events are delegated to main
+    // Card-related events are delegated to div.main
     // for better performance with many cards.
     "click", (e) => {
         if (e.target.classList.contains("delete-button")) {
             const card = e.target.closest(".card");
 
-            // Remove from myLibrary
             const id = parseInt(card.getAttribute("data-id"));
             deleteBookByID(id);
 
-            // Remove from DOM
             card.remove();
             return;
         }
         if (e.target.classList.contains("read-button")) {
             const card = e.target.closest(".card");
 
-            // Update myLibrary
             const id = parseInt(card.getAttribute("data-id"));
             const book = getBookByID(id);
             book.toggleRead();
 
-            // Update DOM
             updateReadDom(e.target, book.read);
         }
     }
 )
+
 
 // Dummy data
 
