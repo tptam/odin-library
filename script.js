@@ -96,9 +96,6 @@ function getValidationMessage(title, author, page, read){
     if (title === "" || author === "" || page === "") {
         return "Input title, author, and page.";
     }
-    if (!title || !author || !page || !read) {
-        return "Invalid data was sent.";
-    }
     if (page <= 0) {
         return "Page should be a positive number.";
     }
