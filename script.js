@@ -32,8 +32,8 @@ Book.prototype.getCard = function() {
     author.classList.add("author");
     page.classList.add("page");
     read.classList.add("read", (this.read ? "true" : "false"));
-    read.setAttribute("src", "./images/bookmark.svg");
-    read.setAttribute("alt", this.read ? "Already read" : "Not yet");
+    read.setAttribute("src", (this.read ? "./images/medal.svg" : "./images/ribbon.svg"));
+    read.setAttribute("alt", this.read ? "Already read" : "Not read yet");
     del.classList.add("del");
     del.setAttribute("src", "./images/close.svg");
     del.setAttribute("alt", "Delete icon");
@@ -91,6 +91,19 @@ function deleteBookByID(id){
     myLibrary.splice(id, 1);
 }
 
+function toggleReadDom(readElement){
+    readElement.classList.toggle("true");
+    readElement.classList.toggle("false");
+    read = readElement.classList.contains("true");
+    readElement.setAttribute(
+        "src",
+        read ? "./images/medal.svg" : "./images/ribbon.svg"
+    );
+    readElement.setAttribute(
+        "alt",
+        read ? "Already read" : "Not read yet"
+    );
+}
 
 const addButton = document.querySelector("form button");
 addButton.addEventListener(
@@ -145,8 +158,7 @@ main.addEventListener(
             book.toggleRead();
 
             // Update DOM
-            e.target.classList.toggle("true");
-            e.target.classList.toggle("false");
+            toggleReadDom(e.target);
         }
     }
 )
@@ -160,30 +172,30 @@ const books = [
     { title: "Neon Horizons", author: "Aria Voltspark", page: 289 },
     { title: "Echoes of Forgotten Realms", author: "Lysander Frostwind", page: 602 },
     { title: "The Clockwork Butterfly", author: "Isadora Gearhart", page: 374 },
-    // { title: "Whispers in the Cosmic Void", author: "Nova Starling", page: 491 },
-    // { title: "The Alchemy of Shadows", author: "Raven Nightshade", page: 305 },
-    // { title: "Chronicles of the Neon City", author: "Cypher Voltwire", page: 433 },
-    // { title: "The Quantum Tarot", author: "Seraphina Flux", page: 267 },
-    // { title: "Echoes of Silicon Dreams", author: "Binary Stardust", page: 512 },
-    // { title: "The Labyrinth of Lost Time", author: "Chronos Vortex", page: 389 },
-    // { title: "Stellar Symphonies", author: "Lyra Cosmosong", page: 275 },
-    // { title: "The Neuromancer's Daughter", author: "Pixel Shadowjack", page: 456 },
-    // { title: "Whispers of the Void", author: "Nebula Darkmatter", page: 331 },
-    // { title: "The Fractured Prism", author: "Iris Spectra", page: 298 },
-    // { title: "Echoes from the Quantum Realm", author: "Quark Wavefront", page: 587 },
-    // { title: "The Cybernetic Garden", author: "Flora Circuitbloom", page: 402 },
-    // { title: "Neon Nights and Binary Days", author: "Ziggy Starbyte", page: 315 },
-    // { title: "The Holographic Manuscript", author: "Prism Codeweaver", page: 444 },
-    // { title: "Whispers of the AI", author: "Cortex Synaptica", page: 378 },
-    // { title: "The Quantum Thief's Paradox", author: "Helix Schrödinger", page: 506 },
-    // { title: "Echoes of Forgotten Algorithms", author: "Ada Lovelace II", page: 422 },
-    // { title: "The Astral Cartographer", author: "Celeste Mapmaker", page: 356 },
-    // { title: "Chromatic Reveries", author: "Palette Dreamscape", page: 283 },
-    // { title: "The Silicon Sorcerer", author: "Merlin Circuitry", page: 471 },
-    // { title: "Whispers from the Datastream", author: "Echo Bytewhisper", page: 329 },
-    // { title: "The Quantum Phoenix Project", author: "Ash Resurgence", page: 518 },
-    // { title: "Echoes of the Cybermoon", author: "Luna Pixelglow", page: 394 },
-    // { title: "The Hologram's Lament", author: "Mirage Lightweaver", page: 287 }
+    { title: "Whispers in the Cosmic Void", author: "Nova Starling", page: 491 },
+    { title: "The Alchemy of Shadows", author: "Raven Nightshade", page: 305 },
+    { title: "Chronicles of the Neon City", author: "Cypher Voltwire", page: 433 },
+    { title: "The Quantum Tarot", author: "Seraphina Flux", page: 267 },
+    { title: "Echoes of Silicon Dreams", author: "Binary Stardust", page: 512 },
+    { title: "The Labyrinth of Lost Time", author: "Chronos Vortex", page: 389 },
+    { title: "Stellar Symphonies", author: "Lyra Cosmosong", page: 275 },
+    { title: "The Neuromancer's Daughter", author: "Pixel Shadowjack", page: 456 },
+    { title: "Whispers of the Void", author: "Nebula Darkmatter", page: 331 },
+    { title: "The Fractured Prism", author: "Iris Spectra", page: 298 },
+    { title: "Echoes from the Quantum Realm", author: "Quark Wavefront", page: 587 },
+    { title: "The Cybernetic Garden", author: "Flora Circuitbloom", page: 402 },
+    { title: "Neon Nights and Binary Days", author: "Ziggy Starbyte", page: 315 },
+    { title: "The Holographic Manuscript", author: "Prism Codeweaver", page: 444 },
+    { title: "Whispers of the AI", author: "Cortex Synaptica", page: 378 },
+    { title: "The Quantum Thief's Paradox", author: "Helix Schrödinger", page: 506 },
+    { title: "Echoes of Forgotten Algorithms", author: "Ada Lovelace II", page: 422 },
+    { title: "The Astral Cartographer", author: "Celeste Mapmaker", page: 356 },
+    { title: "Chromatic Reveries", author: "Palette Dreamscape", page: 283 },
+    { title: "The Silicon Sorcerer", author: "Merlin Circuitry", page: 471 },
+    { title: "Whispers from the Datastream", author: "Echo Bytewhisper", page: 329 },
+    { title: "The Quantum Phoenix Project", author: "Ash Resurgence", page: 518 },
+    { title: "Echoes of the Cybermoon", author: "Luna Pixelglow", page: 394 },
+    { title: "The Hologram's Lament", author: "Mirage Lightweaver", page: 287 }
 ];
 
 for (let book of books) {

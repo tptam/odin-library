@@ -176,7 +176,7 @@ header h1 {
 }
 
 .card-body {
-    padding-top: calc(3rem - var(--gutter));
+    padding-top: calc(4.5rem - var(--gutter));
 }
 
 .card h1 {
@@ -202,10 +202,10 @@ header h1 {
 }
 
 .card .read {
-    width: 2rem;
+    width: 3.5rem;
     position: absolute;
     top: 0;
-    right: calc(var(--gutter)/2);
+    right: 0.5rem;
     cursor: pointer;
 }
 
