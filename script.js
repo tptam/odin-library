@@ -1,6 +1,5 @@
 const myLibrary = [];
 const PARENT = document.querySelector(".main");
-const ADD_BUTTON = document.querySelector("form button");
 
 function Book(title, author, page, read) {
     this.title = title;
@@ -85,15 +84,22 @@ function addBookToLibrary() {
 
 
 // Initial
-
-ADD_BUTTON.addEventListener(
+const addButton = document.querySelector("form button");
+addButton.addEventListener(
     "click", (e) => {
         addBookToLibrary();
         e.preventDefault();
     }
 );
 
-
+const openCloseButton = document.querySelector("#open-close");
+openCloseButton.addEventListener(
+    "click", (e) => {
+        const form = document.querySelector(".form");
+        form.hidden = false;
+        e.preventDefault();
+    }
+)
 
 
 // const book1 = new Book(
