@@ -71,6 +71,11 @@ header h1 {
     color: var(--light-text-color);
 }
 
+#toggle-form:active,
+form button:active {
+    transform: scale(0.95);
+}
+
 #toggle-form {
     display: grid;
     grid-template-columns: auto 1fr;

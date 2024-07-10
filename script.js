@@ -1,5 +1,23 @@
+// Constants
+
 const myLibrary = [];
-const PARENT = document.querySelector(".main");
+const elements = {
+    body: document.querySelector("body"),
+    main: document.querySelector(".main"),
+    form: document.querySelector(".form"),
+    
+    formTitle: document.querySelector("#title"),
+    formAuthor: document.querySelector("#author"),
+    formPage: document.querySelector("#page"),
+    formRead: document.querySelector("#read-true"),
+    formButton: document.querySelector("form button"),
+
+    drawerTrigger: document.querySelector("#toggle-form"),
+    drawerTriggerImg: document.querySelector("#toggle-form img"),
+    drawerTriggerSpan: document.querySelector("#toggle-form span"),
+}
+
+// Constructor + prototype methods
 
 function Book(title, author, page, read) {
     this.title = title;
@@ -52,18 +70,21 @@ Book.prototype.getCard = function() {
     return card;
 }
 
+
+// Regular functions
+
 function displayLibrary() {
     for (let book of myLibrary) {
         const card = book.getCard();
-        PARENT.appendChild(card);
+        elements.main.appendChild(card);
     }
 }
 
 function addBookToLibrary() {
-    const title = document.querySelector("#title").value;
-    const author = document.querySelector("#author").value;
-    const page = parseInt(document.querySelector("#page").value);
-    const read = document.querySelector("#read-true").checked;
+    const title = elements.formTitle.value;
+    const author = elements.formAuthor.value;
+    const page = parseInt(elements.formPage.value);
+    const read = elements.formRead.checked;
 
     // Data validation
     if (title === "" || author === "" || page === "" || page <= 0) {
@@ -71,7 +92,7 @@ function addBookToLibrary() {
         return;
     }
     const sameBook = myLibrary.filter(
-        (book) => book.title === title && book.author === author && book.page === page
+        book => book.title === title && book.author === author && book.page === page
     )
     if (sameBook.length > 0) {
         alert("The book already exists in the library.");
@@ -81,7 +102,7 @@ function addBookToLibrary() {
     const newBook = new Book(title, author, page, read);
     myLibrary.push(newBook);
     
-    PARENT.appendChild(newBook.getCard());
+    elements.main.appendChild(newBook.getCard());
 }
 
 function getBookByID(id){
@@ -92,10 +113,10 @@ function deleteBookByID(id){
     myLibrary.splice(id, 1);
 }
 
-function toggleReadDom(readElement){
-    readElement.classList.toggle("true");
-    readElement.classList.toggle("false");
-    read = readElement.classList.contains("true");
+function updateReadDom(readElement, read){
+    read = !readElement.getAttribute("data-read");
+    readElement.setAttribute("data-read", read);
+
     readElement.setAttribute(
         "src",
         read ? "./images/medal.svg" : "./images/ribbon.svg"
@@ -106,42 +127,37 @@ function toggleReadDom(readElement){
     );
 }
 
-const addButton = document.querySelector("form button");
-addButton.addEventListener(
+
+// Main execution
+
+elements.formButton.addEventListener(
     "click", (e) => {
         addBookToLibrary();
         e.preventDefault();
     }
 );
 
-const toggleFormButton = document.querySelector("#toggle-form");
-toggleFormButton.addEventListener(
+elements.drawerTrigger.addEventListener(
     "click", (e) => {
-        const body = document.querySelector("body");
-        const form = document.querySelector(".form");
-        const span = document.querySelector("#toggle-form span");
-        const img = document.querySelector("#toggle-form img");
-        const firstField = document.querySelector("#title");
-
-        if (toggleFormButton.classList.contains("open-form")) {
-            form.hidden = false;
-            span.textContent = "End Registration";
-            img.setAttribute("src", "./images/up.svg");
-            
-            firstField.focus();
+        if (elements.drawerTrigger.classList.contains("open-form")) {
+            elements.form.hidden = false;
+            elements.drawerTriggerSpan.textContent = "End Registration";
+            elements.drawerTriggerImg.setAttribute("src", "./images/up.svg");
+            elements.formTitle.focus();
         } else {
-            form.hidden = true;
-            span.textContent = "Register New Book"
-            img.setAttribute("src", "./images/down.svg");
+            elements.form.hidden = true;
+            elements.drawerTriggerSpan.textContent = "Register New Book"
+            elements.drawerTriggerImg.setAttribute("src", "./images/down.svg");
         }
-        body.classList.toggle("form-opened");
-        toggleFormButton.classList.toggle("open-form");
+        elements.body.classList.toggle("form-opened");
+        elements.drawerTrigger.classList.toggle("open-form");
         e.preventDefault();
     }
 )
 
-const main = document.querySelector(".main");
-main.addEventListener(
+elements.main.addEventListener(
+    // Card-related events are delegated to main
+    // for better performance with a lot of cards.
     "click", (e) => {
         if (e.target.classList.contains("del")) {
             const card = e.target.parentNode;
@@ -163,7 +179,7 @@ main.addEventListener(
             book.toggleRead();
 
             // Update DOM
-            toggleReadDom(e.target);
+            updateReadDom(e.target, book.read);
         }
     }
 )
