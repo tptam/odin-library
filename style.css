@@ -77,16 +77,6 @@ header #form-open-close {
     cursor: pointer;
 }
 
-/* header button {
-    color: var(--secondary-color);
-    background-color: var(--surface-color);
-    font-size: var(--form-text-size);
-    font-weight: bold;
-    padding: calc(var(--gutter) / 4) calc(var(--gutter) * 2);
-    border-style: none;
-    border-radius: calc(var(--form-text-size) / 2);
-} */
-
 
 .form {
     font-size: var(--form-text-size);
@@ -168,7 +158,7 @@ header #form-open-close {
 }
 
 .card-body {
-    padding-top: calc(2rem - var(--gutter));
+    padding-top: calc(3rem - var(--gutter));
 }
 
 .card h1 {
@@ -197,7 +187,7 @@ header #form-open-close {
     width: 2rem;
     position: absolute;
     top: 0;
-    right: var(--gutter);
+    right: calc(var(--gutter)/2);
 }
 
 .card .read.true {

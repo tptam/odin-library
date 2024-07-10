@@ -38,7 +38,7 @@ Book.prototype.getCard = function() {
     del.setAttribute("alt", "Delete icon");
     title.textContent = this.title;
     author.textContent = this.author;
-    page.textContent = this.page.toString();
+    page.textContent = `- ${this.page.toString()} -`;
     read.textContent = this.read;
     card.appendChild(header);
     card.appendChild(body);
