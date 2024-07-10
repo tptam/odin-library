@@ -15,7 +15,7 @@
     --light-text-color: #fff;
     --dark-text-color: #000;
     --background-color: #F3F9D2;
-    --surface-color: #fff;
+    --surface-color: #fffdf8;
     --shadow-color: gray;
 
 }
@@ -208,7 +208,7 @@ form button:active {
     top: 0;
     right: 0.5rem;
     cursor: pointer;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 footer {
