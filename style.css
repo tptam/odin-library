@@ -151,7 +151,7 @@ header #form-open-close {
     padding: var(--gutter) calc(var(--gutter) * 2);
     position: relative;
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 1fr auto;
     box-shadow: 
         4px 4px var(--secondary-color);
     text-align: center;
