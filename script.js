@@ -38,8 +38,12 @@ Book.prototype.getCard = function() {
     const cardHTML = `
         <div class="card" data-id="${this.id}">
             <div class="card-header">
-                <img class="del" src="./images/close.svg" alt="Delete icon">
-                <img class="read" src="${readIcon}" alt="${readAlt}">
+                <button class="delete-button" aria-label="Delete this book">
+                    <img class="delete-button" src="./images/close.svg" alt="">
+                </button>
+                <button class="read-button" aria-lavel="${readAlt}">
+                    <img class="read-button" src="${readIcon}" alt="">
+                </button>
             </div>
             <div class="card-body">
                 <h1 class="title">${this.title}</h1>
@@ -142,10 +146,10 @@ elements.drawerTrigger.addEventListener(
 
 elements.main.addEventListener(
     // Card-related events are delegated to main
-    // for better performance with a lot of cards.
+    // for better performance with many cards.
     "click", (e) => {
-        if (e.target.classList.contains("del")) {
-            const card = e.target.parentNode.parentNode;
+        if (e.target.classList.contains("delete-button")) {
+            const card = e.target.closest(".card");
 
             // Remove from myLibrary
             const id = parseInt(card.getAttribute("data-id"));
@@ -155,8 +159,8 @@ elements.main.addEventListener(
             card.remove();
             return;
         }
-        if (e.target.classList.contains("read")) {
-            const card = e.target.parentNode.parentNode;
+        if (e.target.classList.contains("read-button")) {
+            const card = e.target.closest(".card");
 
             // Update myLibrary
             const id = parseInt(card.getAttribute("data-id"));
