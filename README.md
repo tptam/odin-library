@@ -2,6 +2,8 @@
 
 Simple web page for personal book management.
 
+<a href="https://tptam.github.io/odin-library/">Live demo</a>
+
 ## Features
 - Display books
 - Add books
