@@ -186,21 +186,21 @@ elements.main.addEventListener(
 // Dummy data
 
 const books = [
-    { title: "The Whispers of Eternity", author: "Elara Moonstone", page: 342 },
-    { title: "The Binary Tree Garden", author: "Zephyr Quark", page: 528 },
-    { title: "The Last Echo", author: "Thorne Shadowbrook", page: 416 },
-    { title: "Nonlinear Horizons", author: "Aria Voltspark", page: 289 },
-    { title: "A Curious Little Microscope", author: "Lysander Frostwind", page: 602 },
-    { title: "The Clockwork Butterfly", author: "Isadora Gearhart", page: 374 },
-    { title: "50 Recipes for the Cosmic Void", author: "Nova Starling", page: 491 },
-    { title: "The Alchemy of Shadows", author: "Raven Nightshade", page: 305 },
-    { title: "Chronicles of the Neon City", author: "Cypher Voltwire", page: 433 },
-    { title: "The Quantum Tarot", author: "Seraphina Flux", page: 267 },
-    { title: "Only Backward", author: "Alex Cornwell", page: 129 },
+    { title: "The Whispers of Eternity", author: "Elara Moonstone", page: 311, read: true },
+    { title: "The Binary Tree Garden", author: "Zephyr Quark", page: 528, read: false },
+    { title: "The Last Echo", author: "Thorne Shadowbrook", page: 416, read: false },
+    { title: "Nonlinear Horizons", author: "Aria Voltspark", page: 289, read: false },
+    { title: "A Curious Little Microscope", author: "Lysander Frostwind", page: 602, read: true },
+    { title: "The Clockwork Butterfly", author: "Isadora Gearhart", page: 374, read: false },
+    { title: "50 Recipes for the Cosmic Void", author: "Nova Starling", page: 491, read: true },
+    { title: "The Alchemy of Shadows", author: "Raven Nightshade", page: 305, read: true },
+    { title: "Chronicles of the Neon City", author: "Cypher Voltwire", page: 433, read: false },
+    { title: "The Quantum Tarot", author: "Seraphina Flux", page: 267, read: false },
+    { title: "Only Backward", author: "Alex Cornwell", page: 129, read: true },
 ];
 
 for (let book of books) {
-    const newBook = new Book(book.title, book.author, book.page, Math.random()< 0.5);
+    const newBook = new Book(book.title, book.author, book.page, book.read);
     myLibrary.push(newBook);
 }
 
