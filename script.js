@@ -41,7 +41,7 @@ Book.prototype.getCard = function() {
         <div class="card" data-id="${this.id}">
             <div class="card-header">
                 <button class="delete-button" aria-label="Delete this book">
-                    <img class="delete-button" src="./images/close.svg" alt="">
+                    <img class="delete-button" src="./images/delete.svg" alt="">
                 </button>
                 <button class="read-button" aria-lavel="${readAlt}">
                     <img class="read-button" src="${readIcon}" alt="">
