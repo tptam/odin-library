@@ -19,48 +19,79 @@ const elements = {
 }
 
 
-// Constructor + prototype methods
+// Class
+// class Book {
+//     title;
+//     author;
+// }
 
-function Book(title, author, page, read) {
-    this.title = title;
-    this.author = author;
-    this.page = page;
-    this.read = read;
-    this.id = myLibrary.length === 0 ? 0 : myLibrary.at(-1).id + 1;
-}
+class Book {
+    #title;
+    #author;
+    #page;
+    #read;
+    #id;
+    constructor (title, author, page, read) {
+        this.#title = title;
+        this.#author = author;
+        this.#page = page;
+        this.#read = read;
+        this.#id = myLibrary.length === 0 ? 0 : myLibrary.at(-1).id + 1;
+    }
+    
+    get title() {
+        return this.#title;
+    }
+    
+    get author() {
+        return this.#author;
+    }
+    
+    get page() {
+        return this.#page;
+    }
+    
+    get read() {
+        return this.#read;
+    }
+    
+    get id() {
+        return this.#id;
+    }
 
-Book.prototype.toggleRead = function() {
-    this.read = !(this.read);
-}
+    toggleRead() {
+        this.#read = !(this.#read);
+    };
 
-Book.prototype.getCard = function() {
-    const readIcon = this.read ? "./images/medal.svg" : "./images/ribbon.svg";
-    const readAlt = this.read ? "Already read" : "Not read yet";
-   
-    const cardHTML = `
-        <div class="card" data-id="${this.id}">
-            <div class="card-header">
-                <button class="delete-button" aria-label="Delete this book">
-                    <img class="delete-button" src="./images/delete.svg" alt="">
-                </button>
-                <button class="read-button" aria-lavel="${readAlt}">
-                    <img class="read-button" src="${readIcon}" alt="">
-                </button>
+    getCard = function() {
+        const readIcon = this.#read ? "./images/medal.svg" : "./images/ribbon.svg";
+        const readAlt = this.#read ? "Already read" : "Not read yet";
+       
+        const cardHTML = `
+            <div class="card" data-id="${this.#id}">
+                <div class="card-header">
+                    <button class="delete-button" aria-label="Delete this book">
+                        <img class="delete-button" src="./images/delete.svg" alt="">
+                    </button>
+                    <button class="read-button" aria-lavel="${readAlt}">
+                        <img class="read-button" src="${readIcon}" alt="">
+                    </button>
+                </div>
+                <div class="card-body">
+                    <h1 class="title">${this.#title}</h1>
+                    <p class="author">${this.#author}</p>
+                </div>
+                <div class="card-footer">
+                    <p class="page">- ${this.#page} -</p>
+                </div>
             </div>
-            <div class="card-body">
-                <h1 class="title">${this.title}</h1>
-                <p class="author">${this.author}</p>
-            </div>
-            <div class="card-footer">
-                <p class="page">- ${this.page} -</p>
-            </div>
-        </div>
-    `;
-
-    // Avoid innerHTML for security, use DOMParser instead.
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(cardHTML, 'text/html');
-    return doc.body.firstElementChild;
+        `;
+    
+        // Avoid innerHTML for security, use DOMParser instead.
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(cardHTML, 'text/html');
+        return doc.body.firstElementChild;
+    }
 }
 
 
